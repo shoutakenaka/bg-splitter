@@ -85,29 +85,33 @@
                 var initWOrH;
                 
                 if (vertical) {
-                    initLOrT = 'top';
-                    initWOrH = 'height';
-                } else {
-                    initLOrT = 'left';
-                    initWOrH = 'width';
-                }
-                var pane1initsize = pane1.initSize;
-                if (initPane2) {
-                    if (vertical){
-                        var parheight = pane1.elem[0].parentNode.offsetHeight;
-                        pane1initsize = parheight-pane2.initSize;
+                    if (initPane1) {
+                        var pane1Height = pane1.elem[0].parentNode.offsetHeight + bottom;
+                        var pane2Height = pane2.elem[0].parentNode.offsetHeight + bottom;
+                        var bottom = pane1.initSize;
+                        var height = pane2Height + (pane1Height - bottom);
+                        handler.css("bottom", bottom + 'px');
+                        pane1.elem.css("bottom", bottom + 'px');
+                        pane2.elem.css("height", pane2.initSize);
                     }
-                    else{
+                    else if (initPane2) {
+                        var pane1Height = pane1.elem[0].parentNode.offsetHeight + bottom;
+                        var pane2Height = pane2.elem[0].parentNode.offsetHeight + bottom;
+                        var height = pane2.initSize;
+                        var bottom = pane1Height + (pane2Height - height);
+                        handler.css("bottom", bottom + 'px');
+                        pane1.elem.css("bottom", bottom + 'px');
+                        pane2.elem.css("height", pane2.initSize);
+                    }
+                } else {
+                    // TODO
+                    if (initPane2) {
                         var parwidth = pane1.elem[0].parentNode.offsetWidth;
                         pane1initsize = parwidth-pane2.initSize;
+                        handler.css("left", pane1initsize + 'px');
+                        pane1.elem.css("width", pane1initsize + 'px');
+                        pane2.elem.css("left", pane1initsize + 'px');
                     }
-                    initPane1 = (!isNaN(pane1initsize));
-                }
-
-                if (initPane1) {
-                    handler.css(initLOrT, pane1initsize + 'px');
-                    pane1.elem.css(initWOrH, pane1initsize + 'px');
-                    pane2.elem.css(initLOrT, pane1initsize + 'px');
                 }
                 element.bind('mousemove', function (ev) {
                     if (!drag) return;
@@ -116,7 +120,6 @@
                     var pos = 0;
                     
                     if (vertical) {
-
                         var height = bounds.bottom - bounds.top;
                         pos = ev.clientY - bounds.top;
 
@@ -126,6 +129,7 @@
                         handler.css('top', pos + 'px');
                         pane1.elem.css('height', pos + 'px');
                         pane2.elem.css('top', pos + 'px');
+                        pane2.elem.css('height', (height - pos) + 'px');
             
                     } else {
 

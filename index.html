@@ -5,28 +5,118 @@
   <title>bg-splitter</title>
   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
   <style>
-    body
-    {
-      margin: 0px;
+    html, body {
       font-family: Arial, Helvetica, sans-serif;
+      width: 100%;
+      height: 100%;
     }
 
-    .pane-container
-    {
-      padding: 10px;
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    header {
+      background: #ffeeee;
+      position: absolute;
+      height: 48px;
+      top: 0px;
+      width: 100%;
+    }
+
+    footer {
+      background: #eeeeff;
+      position: absolute;
+      height: 48px;
+      bottom: 0px;
+      width: 100%;
+    }
+
+    .content-root {
+        position: absolute;
+        background: #f6f6f6;
+        top: 48px;
+        bottom: 48px;
+        width: 100%;
+    }
+
+    .wrapper {
+        position: relative;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .pane-container {
+      background: #f6fff6;
+      overflow-y: scroll;
+      height: 100%;
     }
   </style>
 </head>
 <body>
-  <bg-splitter orientation="horizontal">
-    <bg-pane min-size="100"><div class="pane-container">Pane 1</div></bg-pane>
-    <bg-pane min-size="150">
-      <bg-splitter orientation="vertical">
-        <bg-pane min-size="100" class="pane-container">Pane 2</bg-pane>
-        <bg-pane min-size="150" class="pane-container">Pane 3</bg-pane>
-      </bg-splitter>
-    </bg-pane>
-  </bg-splitter>
+  <header>
+    <p>Header</p>
+  </header>
+  <div class="content-root">
+      <div class="wrapper">
+    <bg-splitter orientation="horizontal">
+      <bg-pane min-size="100"><div class="pane-container">Pane 1</div></bg-pane>
+      <bg-pane min-size="150">
+        <bg-splitter orientation="vertical">
+          <bg-pane min-size="100" class="pane-container">
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+            <p>Pane 2</p>
+          </bg-pane>
+          <bg-pane min-size="150" class="pane-container">
+            <bg-splitter orientation="vertical">
+              <bg-pane min-size="50" class="pane-container">
+                Pane3<br/> Pane3<br/> Pane3<br/> Pane3<br/> Pane3<br/>
+                Pane3<br/> Pane3<br/> Pane3<br/> Pane3<br/> Pane3<br/>
+                Pane3<br/> Pane3<br/> Pane3<br/> Pane3<br/> Pane3<br/>
+              </bg-pane>
+              <bg-pane min-size="50" class="pane-container">
+                Pane4<br/> Pane4<br/> Pane4<br/> Pane4<br/> Pane4<br/>
+                Pane4<br/> Pane4<br/> Pane4<br/> Pane4<br/> Pane4<br/>
+                Pane4<br/> Pane4<br/> Pane4<br/> Pane4<br/> Pane4<br/>
+              </bg-pane>
+            </bg-splitter>
+          </bg-pane>
+        </bg-splitter>
+      </bg-pane>
+    </bg-splitter>
+      </div>
+  </div>
+  <!--
+  <div class="wrapper">
+  </div>
+  -->
+  <footer>
+    <p>Footer</p>
+  </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
   <script src="js/splitter.js"></script>
   <script>
